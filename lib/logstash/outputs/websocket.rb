@@ -39,7 +39,7 @@ class LogStash::Outputs::WebSocket < LogStash::Outputs::Base
 
   public
   def receive(event)
-    return unless output?(event)
+    
     @pubsub.publish(event.to_json)
   end # def receive
 
