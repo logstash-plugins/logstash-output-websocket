@@ -1,7 +1,6 @@
 # Logstash Plugin
 
-[![Build
-Status](http://build-eu-00.elastic.co/view/LS%20Plugins/view/LS%20Outputs/job/logstash-plugin-output-websocket-unit/badge/icon)](http://build-eu-00.elastic.co/view/LS%20Plugins/view/LS%20Outputs/job/logstash-plugin-output-websocket-unit/)
+[![Travis Build Status](https://travis-ci.org/logstash-plugins/logstash-output-websocket.svg)](https://travis-ci.org/logstash-plugins/logstash-output-websocket)
 
 This is a plugin for [Logstash](https://github.com/elastic/logstash).
 
