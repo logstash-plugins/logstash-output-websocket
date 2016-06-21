@@ -3,7 +3,7 @@ require "logstash/namespace"
 require "logstash/outputs/base"
 
 
-# This output runs a websocket server and publishes any 
+# This output runs a websocket server and publishes any
 # messages to all connected websocket clients.
 #
 # You can connect to it with ws://<host\>:<port\>/
@@ -39,7 +39,7 @@ class LogStash::Outputs::WebSocket < LogStash::Outputs::Base
 
   public
   def receive(event)
-    
+
     @pubsub.publish(event.to_json)
   end # def receive
 
