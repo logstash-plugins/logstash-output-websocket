@@ -18,15 +18,26 @@ class LogStash::Outputs::WebSocket < LogStash::Outputs::Base
   # The port to serve websocket data from
   config :port, :validate => :number, :default => 3232
 
+  # Make sure only one instance is ever created
+  if self.respond_to?(:workers_not_supported!) # Check for v2.2+ API
+    declare_workers_not_supported!("Websocket only supports one worker to prevent text overlap!")
+  end
+
+
   public
   def register
     require "ftw"
     require "logstash/outputs/websocket/app"
     require "logstash/outputs/websocket/pubsub"
+
+    # Make sure only one instance is ever created 
+    workers_not_supported # for pre-v2.2
+
     @pubsub = LogStash::Outputs::WebSocket::Pubsub.new
     @pubsub.logger = @logger
     @server = Thread.new(@pubsub) do |pubsub|
       begin
+        @logger.debug("Starting the websocket pubsub thread", :Host => @host, :Port => @port)
         Rack::Handler::FTW.run(LogStash::Outputs::WebSocket::App.new(pubsub, @logger),
                                :Host => @host, :Port => @port)
       rescue => e
