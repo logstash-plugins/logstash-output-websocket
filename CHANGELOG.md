@@ -1,4 +1,4 @@
-## 3.2.0
+## 3.1.0
   - Update sinatra dependency to 2.x [#19](https://github.com/logstash-plugins/logstash-output-websocket/pull/19)
 
 ## 3.0.5
